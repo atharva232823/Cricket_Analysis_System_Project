@@ -182,19 +182,19 @@ UPDATE wtc_points SET Captain = 'Kane Williamson' WHERE team = 'NEW ZEALAND';
 use cricket_analysis_system;
 select * from wtc_points;
 
--- -------------------------------------------------------------------------------------------------------------------------------
+-- ----------------------------------------------------------------------------------------------------------------------------------------
 #Q1:-To find the team which is highest ranked 1st in the table and rank all the other teams as per rankings?
 select rank_,team,pct
 from wtc_points
 order by rank_ asc;
 
--- ---------------------------------------------------------------------------------------
+-- -----------------------------------------------------------------------------------------------------------------------------------------
 #Q2:-List all the players who scored more than 500 runs in the wtc cycle?
 select player_id,player_name,runs,
 country from batting_records
 where runs >500;
 
--- -------------------------------------------------------------------------------------------------------------
+-- -------------------------------------------------------------------------------------------------------------------------------------------
 #Q3:-Display the top 5 bowler who has taken the most wickets?
 select player_id,player_name,
 country,wickets 
@@ -202,27 +202,27 @@ from bowling_records
 order by wickets desc
 limit 5;
 
--- -------------------------------------------------------------------------------------------------
+-- --------------------------------------------------------------------------------------------------------------------------------------------
 #Q4:-Show the average runs by each team in the wtc cycle?
 select country,avg(runs) as average_runs
 from batting_records
 group by country
 order by average_runs desc;
 
--- -------------------------------------------------------------------------------------------------------------------------
+-- -------------------------------------------------------------------------------------------------------------------------------------------------
 #Q5:-List all the bowlers who have bowled more than 50 maiden overs in the wtc cycle?
 select player_id,player_name,country,
 maiden_overs from bowling_records
 where maiden_overs >50;
 
--- -------------------------------------------------------------------------------------------------------------------------
+-- -------------------------------------------------------------------------------------------------------------------------------------------------------
 #Q6:-Find the players who are all rounders their batting and bowling stats?
 select p.player_id,p.player_name,p.country,
 p.runs,bw.wickets from batting_records as p
 join bowling_records as bw
 on p.player_id = bw.player_id;
 
--- -------------------------------------------------------------------------------------------------------------------------------------
+-- --------------------------------------------------------------------------------------------------------------------------------------------------------
 #Q7:-List top 5 players from the top 3 Wtc teams and their batting records?
 select p.player_id,p.player_name,p.country,
 w.rank_ as team_rank,w.country_id 
@@ -233,13 +233,13 @@ where rank_ <=3
 and p.runs > 500
 order by rank_ asc,p.runs desc;
 
--- ------------------------------------------------------------------------------------------------------------------------
+-- ----------------------------------------------------------------------------------------------------------------------------------------------------------
 #Q8:-List the bowlers who have the economy rate less than 3?
 select player_id,player_name,country,
 economy from bowling_records
 where economy <3;
 
--- ------------------------------------------------------------------------------------------------------------------------
+-- -----------------------------------------------------------------------------------------------------------------------------------------------------------
 #Q9:-List top 3 players from each team based on runs
 select player_id, player_name, country, country_id, runs
 FROM (
@@ -249,7 +249,7 @@ FROM (
 where run_rank <= 3
 order by country, run_rank;
 
--- ---------------------------------------------------------------------------------------------------------------------------------
+-- --------------------------------------------------------------------------------------------------------------------------------------------------------------
 #Q10-List the players with stats of bowling whether or not they have their batting records
 select p.player_id,p.player_name,p.country,
 p.runs,bw.wickets
@@ -265,7 +265,7 @@ left join batting_records as p
 on bw.player_id =p.player_id
 where p.player_id is null;
 
--- ----------------------------------------------------------------------------------------------------------------------------------------------
+-- -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #Q11:-List the players with stats of runs whether or not have their wickets records
  select p.player_id,p.player_name,p.country,
 p.runs,bw.wickets
@@ -281,7 +281,7 @@ right join batting_records as p
 on bw.player_id =p.player_id
 where bw.player_id is null;
 
--- ----------------------------------------------------------------------------------------------------------------------------------
+-- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #Q12:-Classify batsman as per "excellent","good","average" as per their batting average
 select player_id,player_name,country,average,
 case
@@ -292,7 +292,7 @@ end as performance_category
 from batting_records
 order by average desc;
 
--- ------------------------------------------------------------------------------------------------------------------------------------------
+-- -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #Q13:-Classify bowlers as per their economy as "economical","average","expensive"
 select player_id,player_name,country,economy,
 case
