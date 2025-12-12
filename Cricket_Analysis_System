@@ -204,7 +204,7 @@ limit 5;
 
 -- -------------------------------------------------------------------------------------------------
 #Q4:-Show the average runs by each team in the wtc cycle?
-select country,sum(runs) as average_runs
+select country,avg(runs) as average_runs
 from batting_records
 group by country
 order by average_runs desc;
@@ -230,7 +230,8 @@ from batting_records as p
 join wtc_points as w
 on p.country_id = w.country_id
 where rank_ <=3
-order by rank_ asc;
+and p.runs > 500
+order by rank_ asc,p.runs desc;
 
 -- ------------------------------------------------------------------------------------------------------------------------
 #Q8:-List the bowlers who have the economy rate less than 3?
